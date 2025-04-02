@@ -447,6 +447,7 @@ public int parse(String expression) {
 ```
 
 **EJ6. Captura de que TODOS los tests PASAN tras la refactorización**
+
 ![Pasa](capturas/image6_2.png "Test pasa tras refactorización")
 
 <!-- **Mejoras significativas en la refactorización**:
@@ -1488,5 +1489,5 @@ org.opentest4j.AssertionFailedError: expected: <2> but was: <4>
 ```
 **EJ20. Captura de que TODOS los test PASAN**
 
-![Pasa](capturas/image20.jpg "Pasa")
+![Pasa](capturas/image20.png "Pasa")
 
