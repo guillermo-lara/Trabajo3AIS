@@ -44,6 +44,7 @@ public int parse(String expression) {
 ```
 
 **EJ1. Captura de que TODOS los test PASAN**
+
 ![Pasa](capturas/image1_1.png "Pasa")
 
 **EJ1. Refactorización**
@@ -56,6 +57,7 @@ public int parse(String expression) {
 ```
 
 **EJ1. Captura de que TODOS los tests PASAN tras la refactorización**
+
 ![Pasa](capturas/image1_2.png "Pasa tras refactorización")
 
 ### Ejemplo 2
@@ -109,7 +111,8 @@ public int parse(String expression) {
 ```
 
 **EJ2. Captura de que TODOS los test PASAN**
-![Pasa](capturas/image2.png "Test pasa con implementación inicial")
+
+![Pasa](capturas/image2_1.png "Test pasa con implementación inicial")
 
 **EJ2. Refactorización**
 Se simplifica eliminando la variable temporal y usando returns directos
@@ -126,6 +129,7 @@ public int parse(String expression) {
 ```
 
 **EJ2. Captura de que TODOS los tests PASAN tras la refactorización**
+
 ![Pasa](capturas/image2_2.png "Test pasa tras refactorización")
 
 ### Ejemplo 3
@@ -176,7 +180,8 @@ public int parse(String expression) {
 ```
 
 **EJ3. Captura de que TODOS los test PASAN**
-![Pasa](capturas/image3.png "Test pasa con implementación inicial")
+
+![Pasa](capturas/image3_1.png "Test pasa con implementación inicial")
 
 **EJ3. Refactorización**
 Se simplifica el código eliminando la variable temporal innecesaria
@@ -188,7 +193,8 @@ public int parse(String expression) {
 ```
 
 **EJ3. Captura de que TODOS los tests PASAN tras la refactorización**
-![Pasa](capturas/image3_refactor.png "Test pasa tras refactorización")
+
+![Pasa](capturas/image3_2.png "Test pasa tras refactorización")
 
 **Nota sobre la refactorización**:
 La solución final usando `Integer.parseInt()` es más limpia y escalable que la aproximación anterior con condicionales, ya que:
@@ -244,7 +250,8 @@ public int parse(String expression) {
 ```
 
 **EJ4. Captura de que TODOS los test PASAN**
-![Pasa](capturas/image4.png "Test pasa con implementación inicial")
+
+![Pasa](capturas/image4_1.png "Test pasa con implementación inicial")
 
 **EJ4. Refactorización**
 Se simplifica eliminando la variable temporal innecesaria
@@ -259,7 +266,8 @@ public int parse(String expression) {
 ```
 
 **EJ4. Captura de que TODOS los tests PASAN tras la refactorización**
-![Pasa](capturas/image4_refactor.png "Test pasa tras refactorización")
+
+![Pasa](capturas/image4_2.png "Test pasa tras refactorización")
 
 **Nota sobre la evolución**:
 1. La solución actual sigue siendo muy específica para el caso "1 + 1"
@@ -323,7 +331,8 @@ public int parse(String expression) {
 ```
 
 **EJ5. Captura de que TODOS los test PASAN**
-![Pasa](capturas/image5.png "Test pasa con implementación inicial")
+
+![Pasa](capturas/image5_1.png "Test pasa con implementación inicial")
 
 **EJ5. Refactorización**
 ```java
@@ -352,7 +361,8 @@ private int parseSingleNumber(String[] parts) {
 ```
 
 **EJ5. Captura de que TODOS los tests PASAN tras la refactorización**
-![Pasa](capturas/image5_refactor.png "Test pasa tras refactorización")
+
+![Pasa](capturas/image5_2.png "Test pasa tras refactorización")
 
 <!-- **Mejoras realizadas en la refactorización**:
 1. Extracción de métodos para mejorar legibilidad
@@ -421,7 +431,8 @@ public int parse(String expression) {
 ```
 
 **EJ6. Captura de que TODOS los test PASAN**
-![Pasa](capturas/image6.png "Test pasa con implementación inicial")
+
+![Pasa](capturas/image6_1.png "Test pasa con implementación inicial")
 
 **EJ6. Refactorización (Solución mejorada)**
 ```java
@@ -436,7 +447,7 @@ public int parse(String expression) {
 ```
 
 **EJ6. Captura de que TODOS los tests PASAN tras la refactorización**
-![Pasa](capturas/image6_refactor.png "Test pasa tras refactorización")
+![Pasa](capturas/image6_2.png "Test pasa tras refactorización")
 
 <!-- **Mejoras significativas en la refactorización**:
 
@@ -883,7 +894,7 @@ org.opentest4j.AssertionFailedError: expected: <2> but was: <5>
 
 **EJ13. Captura de que TODOS los test PASAN**
 
-![Pasa](capturas/image13_1.jpg "Pasa")
+![Pasa](capturas/image13_1.png "Pasa")
 
 **EJ13. Refactorización completa**
 
@@ -918,7 +929,7 @@ public int parse(String expression) {
 
 
 
-![Pasa](capturas/image13_2.jpg "Pasa")
+![Pasa](capturas/image13_2.png "Pasa")
 
 
 
@@ -979,7 +990,7 @@ org.opentest4j.AssertionFailedError: expected: <-1> but was: <0>
 
 **EJ14. Captura de que TODOS los test PASAN**
 
-![Pasa](capturas/image14.jpg "Pasa")
+![Pasa](capturas/image14.png "Pasa")
 
 
 
@@ -1050,7 +1061,7 @@ org.opentest4j.AssertionFailedError: expected: <4> but was: <5>
 
 **EJ15. Captura de que TODOS los test PASAN**
 
-![Pasa](capturas/image15.jpg "Pasa")
+![Pasa](capturas/image15.png "Pasa")
 
 
 ### Ejemplo 16
@@ -1126,7 +1137,7 @@ org.opentest4j.AssertionFailedError: expected: <0> but was: <1>
 
 **EJ16. Captura de que TODOS los test PASAN**
 
-![Pasa](capturas/image16.jpg "Pasa")
+![Pasa](capturas/image16.png "Pasa")
 
 
 ### Ejemplo 17
@@ -1215,7 +1226,7 @@ org.opentest4j.AssertionFailedError: expected: <3> but was: <8>
 
 **EJ17. Captura de que TODOS los test PASAN**
 
-![Pasa](capturas/image17.jpg "Pasa")
+![Pasa](capturas/image17.png "Pasa")
 
 
 
@@ -1310,7 +1321,7 @@ org.opentest4j.AssertionFailedError: expected: <8> but was: <18>
 
 **EJ18. Captura de que TODOS los test PASAN**
 
-![Pasa](capturas/image18.jpg "Pasa")
+![Pasa](capturas/image18.png "Pasa")
 
 
 
@@ -1404,7 +1415,7 @@ org.opentest4j.AssertionFailedError: expected: <2> but was: <4>
 
 **EJ19. Captura de que TODOS los test PASAN**
 
-![Pasa](capturas/image19.jpg "Pasa")
+![Pasa](capturas/image19.png "Pasa")
 
  
 
