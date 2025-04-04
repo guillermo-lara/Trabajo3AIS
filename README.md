@@ -34,6 +34,7 @@ at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 ```
 
 **EJ1. Código mínimo para que el test pase**
+
 Se implementa el valor fijo 1 para hacer pasar la prueba
 
 ```java
@@ -346,7 +347,7 @@ Se quitan variables de más y yendo con lo que realmente se necesita.
     	  }
 ```
 
-**EJ6. Captura de que TODOS los tests PASAN tras la refactorización**
+**EJ5. Captura de que TODOS los tests PASAN tras la refactorización**
 
 ![Pasa](capturas/image5_2.png "Test pasa tras refactorización")
 
@@ -386,6 +387,9 @@ at es.codeurjc.test.CalculatorParserTest.testSuma(CalculatorParserTest.java:27)
 ```
 
 **EJ6. Código mínimo para que el test pase**
+
+El código suma 1, 2 o 3 números según cuántos haya en la expresión, asumiendo que todo está bien escrito.
+
 ```java
 public int parse(String expression) {
     expression = expression.trim();
