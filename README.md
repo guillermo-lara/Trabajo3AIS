@@ -48,8 +48,8 @@ public int parse(String expression) {
 ![Pasa](capturas/image1_1.png "Pasa")
 
 **EJ1. Refactorización**
-Se simplifica el código eliminando la variable temporal innecesaria
 
+Se simplifica el código eliminando la variable temporal innecesaria
 ```java
 public int parse(String expression) {
     return 1;
@@ -96,6 +96,7 @@ at es.codeurjc.test.CalculatorParserTest.testSingleNumber(CalculatorParserTest.j
 ```
 
 **EJ2. Código mínimo para que el test pase**
+
 Se implementa un condicional para manejar ambos casos ("1" y "2")
 
 ```java
@@ -115,6 +116,7 @@ public int parse(String expression) {
 ![Pasa](capturas/image2_1.png "Test pasa con implementación inicial")
 
 **EJ2. Refactorización**
+
 Se simplifica eliminando la variable temporal y usando returns directos
 
 ```java
@@ -170,6 +172,7 @@ at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 ```
 
 **EJ3. Código mínimo para que el test pase**
+
 Se implementa la conversión directa del String a int usando Integer.parseInt()
 
 ```java
@@ -184,6 +187,7 @@ public int parse(String expression) {
 ![Pasa](capturas/image3_1.png "Test pasa con implementación inicial")
 
 **EJ3. Refactorización**
+
 Se simplifica el código eliminando la variable temporal innecesaria
 
 ```java
@@ -196,12 +200,6 @@ public int parse(String expression) {
 
 ![Pasa](capturas/image3_2.png "Test pasa tras refactorización")
 
-**Nota sobre la refactorización**:
-La solución final usando `Integer.parseInt()` es más limpia y escalable que la aproximación anterior con condicionales, ya que:
-1. Elimina completamente la duplicación de código
-2. Maneja cualquier número entero válido, no solo casos específicos
-3. Es más mantenible y legible
-4. Sigue el principio DRY (Don't Repeat Yourself)
 
 ### Ejemplo 4
 
@@ -236,6 +234,7 @@ at es.codeurjc.test.CalculatorParserTest.testSuma(CalculatorParserTest.java:27)
 ```
 
 **EJ4. Código mínimo para que el test pase**
+
 Se implementa un caso específico para la suma "1 + 1"
 
 ```java
@@ -254,6 +253,7 @@ public int parse(String expression) {
 ![Pasa](capturas/image4_1.png "Test pasa con implementación inicial")
 
 **EJ4. Refactorización**
+
 Se simplifica eliminando la variable temporal innecesaria
 
 ```java
@@ -268,20 +268,6 @@ public int parse(String expression) {
 **EJ4. Captura de que TODOS los tests PASAN tras la refactorización**
 
 ![Pasa](capturas/image4_2.png "Test pasa tras refactorización")
-
-**Nota sobre la evolución**:
-1. La solución actual sigue siendo muy específica para el caso "1 + 1"
-2. En próximas iteraciones sería necesario:
-   - Implementar un parser que divida la expresión en operandos y operador
-   - Manejar diferentes operaciones aritméticas
-   - Validar el formato de entrada
-3. La refactorización actual mantiene la simplicidad pero muestra el camino hacia una solución más genérica
-
-**Próximos pasos sugeridos**:
-1. Añadir test para "2 + 2"
-2. Implementar un split de la cadena
-3. Crear método para procesar operaciones matemáticas
-4. Manejar espacios en blanco de forma más robusta
 
 ### Ejemplo 5
 
@@ -316,6 +302,9 @@ at es.codeurjc.test.CalculatorParserTest.testSuma(CalculatorParserTest.java:27)
 ```
 
 **EJ5. Código mínimo para que el test pase**
+
+Hace la suma si hay dos números con un "+" en medio, y si no, solo devuelve el número que le pasaste.
+
 ```java
 public int parse(String expression) {
     expression = expression.trim();
@@ -335,51 +324,32 @@ public int parse(String expression) {
 ![Pasa](capturas/image5_1.png "Test pasa con implementación inicial")
 
 **EJ5. Refactorización**
+
+Se quitan variables de más y yendo con lo que realmente se necesita.
+
 ```java
-public int parse(String expression) {
-    String[] parts = expression.trim().split(" ");
-    
-    if(isSumExpression(parts)) {
-        return parseSum(parts);
-    }
-    return parseSingleNumber(parts);
-}
-
-private boolean isSumExpression(String[] parts) {
-    return parts.length == 3 && parts[1].equals("+");
-}
-
-private int parseSum(String[] parts) {
-    int num1 = Integer.parseInt(parts[0]);
-    int num2 = Integer.parseInt(parts[2]);
-    return num1 + num2;
-}
-
-private int parseSingleNumber(String[] parts) {
-    return Integer.parseInt(parts[0]);
-}
+ public int parse(String expression) {
+        expression = expression.trim();
+        int num1;
+  int num2;
+        int result=0;
+        String[] characters = expression.split(" ");
+   
+ if(characters.length==3){
+            num1=Integer.parseInt(characters[0]);
+            num2=Integer.parseInt(characters[2]);
+            result= num1 +num2;
+        }else{
+            return Integer.parseInt(characters[0]);
+        }
+        return result;
+    	  }
 ```
 
-**EJ5. Captura de que TODOS los tests PASAN tras la refactorización**
+**EJ6. Captura de que TODOS los tests PASAN tras la refactorización**
 
 ![Pasa](capturas/image5_2.png "Test pasa tras refactorización")
 
-<!-- **Mejoras realizadas en la refactorización**:
-1. Extracción de métodos para mejorar legibilidad
-2. Separación de responsabilidades:
-   - `isSumExpression`: Determina si es una suma
-   - `parseSum`: Procesa expresiones de suma
-   - `parseSingleNumber`: Procesa números simples
-3. Validación del operador "+"
-4. Eliminación de variables temporales innecesarias
-5. Mejor manejo de casos límite
-
-**Próximos pasos sugeridos**:
-1. Añadir soporte para otras operaciones (-, *, /)
-2. Manejar expresiones con diferentes espacios
-3. Validar formato de entrada
-4. Añadir manejo de errores para formatos inválidos
-5. Implementar soporte para operaciones múltiples (ej: "2 + 3 + 4") -->
 
 ### Ejemplo 6
 
@@ -434,42 +404,35 @@ public int parse(String expression) {
 
 ![Pasa](capturas/image6_1.png "Test pasa con implementación inicial")
 
-**EJ6. Refactorización (Solución mejorada)**
+**EJ6. Refactorización**
+
+Se limpió el código quitando variables que no hacían falta todo el tiempo, haciéndolo más ordenado, claro y fácil de mantener.
+
 ```java
 public int parse(String expression) {
-    String[] parts = expression.trim().split(" \\+ ");
-    int sum = 0;
-    for(String num : parts) {
-        sum += Integer.parseInt(num.trim());
-    }
-    return sum;
+        expression = expression.trim();
+        
+        int result=0;
+        String[] characters = expression.split(" ");
+        if (characters.length==3) {
+            int num1=Integer.parseInt(characters[0]);
+            int num2=Integer.parseInt(characters[2]);
+            result= num1 +num2;
+        }else if(characters.length==5){
+            int num1=Integer.parseInt(characters[0]);
+            int num2=Integer.parseInt(characters[2]);
+            int num3=Integer.parseInt(characters[4]);
+            result= num1 +num2+num3;
+        }else{
+            return Integer.parseInt(characters[0]);
+        }
+        return result;
 }
 ```
 
 **EJ6. Captura de que TODOS los tests PASAN tras la refactorización**
 
 ![Pasa](capturas/image6_2.png "Test pasa tras refactorización")
-
-<!-- **Mejoras significativas en la refactorización**:
-
-1. **Solución genérica**: Ahora maneja cualquier cantidad de sumandos
-2. **Código más limpio**: Eliminación de condicionales anidados
-3. **Más mantenible**: Fácil de extender para otros operadores
-4. **Más robusto**: Maneja espacios adicionales con trim()
-5. **Eficiente**: Procesamiento lineal O(n) en lugar de O(1) para casos específicos
-
-**Ventajas de la solución refactorizada**:
-- Funciona para "1", "1 + 2", "1 + 2 + 3", etc.
-- Fácil de extender para restas (solo cambiar el split y usar -=)
-- Más legible y mantenible
-- Menos propensa a errores al añadir nuevos casos
-
-**Próximos pasos recomendados**:
-1. Implementar soporte para diferentes operadores (+, -, *, /)
-2. Manejar expresiones mixtas ("2 + 3 - 1")
-3. Añadir validación de formato de entrada
-4. Implementar prioridad de operadores
-5. Manejar paréntesis para agrupación -->
 
 ### Ejemplo 7
 
@@ -534,6 +497,7 @@ public int parse(String expression) {
 ![Pasa](capturas/image7_1.png "Pasa")
 
 **EJ7. Refactorización**
+
 Se eliminó la línea redundante de inicialización de `numero` y se mejoró la legibilidad.
 
 ```java
@@ -556,9 +520,6 @@ public int parse(String expression) {
 ![Pasa](capturas/image7_2.png "Pasa")
 
 ### Ejemplo 8
-
-
-Aquí tienes el formato markdown siguiendo la estructura solicitada:
 
 **INPUT y OUTPUT**: "A" -> UnsupportedOperationException
 
@@ -613,8 +574,6 @@ public int parse(String expression) {
 **EJ8. Captura de que TODOS los test PASAN**
 
 ![Pasa](capturas/image8.png "Pasa")
-
-
 
 ### Ejemplo 9
 
@@ -672,9 +631,6 @@ public int parse(String expression) {
 ![Pasa](capturas/image9.png "Pasa")
 
 ### Ejemplo 10
-
-
-Aquí tienes el formato markdown siguiendo la estructura solicitada:
 
 **INPUT y OUTPUT**: "k" → UnsupportedOperationException
 
@@ -761,6 +717,8 @@ Caused by: java.lang.NumberFormatException: For input string: "HoLa"
 
 **EJ11. Código mínimo para que el test pase**
 
+Este código suma números separados por "+" en una cadena, y lanza error si la expresión solo tiene letras.
+
 ```java
     public int parse(String expression) {
         expression = expression.trim();
@@ -815,6 +773,8 @@ Caused by: java.lang.NumberFormatException: For input string: "A"
 
 **EJ12. Código mínimo para que el test pase**
 
+Este código suma números separados por "+" y lanza un error si la expresión contiene letras.
+
 ```java
     public int parse(String expression) {
         expression = expression.trim();
@@ -863,6 +823,8 @@ org.opentest4j.AssertionFailedError: expected: <2> but was: <5>
 
 **EJ13. Código mínimo para que el test pase**
 
+Este código evalúa sumas de números (como "1 + 2 + 3"), lanza error si hay letras, y solo resuelve "5 - 3" como una resta específica.
+
 ```java
   public int parse(String expression) {
         expression = expression.trim();
@@ -897,7 +859,9 @@ org.opentest4j.AssertionFailedError: expected: <2> but was: <5>
 
 ![Pasa](capturas/image13_1.png "Pasa")
 
-**EJ13. Refactorización completa**
+**EJ13. Refactorización**
+
+Se quitó una variable que no hacía falta y se devolvió el valor directo, dejando el código más limpio y rápido de leer.
 
 ```java
 public int parse(String expression) {
@@ -928,11 +892,9 @@ public int parse(String expression) {
     }
 ```
 
-
+**EJ13. Captura de que TODOS los tests PASAN tras la refactorización**
 
 ![Pasa](capturas/image13_2.png "Pasa")
-
-
 
 ### Ejemplo 14
 
@@ -956,6 +918,8 @@ org.opentest4j.AssertionFailedError: expected: <-1> but was: <0>
 ```
 
 **EJ14. Código mínimo para que el test pase**
+
+Este código suma números si la expresión usa "+", resuelve "5 - 3" como caso especial, lanza error si hay letras y devuelve -1 si no reconoce la operación.
 
 ```java
     public int parse(String expression) {
@@ -1018,6 +982,8 @@ org.opentest4j.AssertionFailedError: expected: <4> but was: <5>
 ```
 
 **EJ15. Código mínimo para que el test pase**
+
+Este código suma números con "+" y resta números con "-", lanzando error si hay letras en la expresión.
 
 ```java
         public int parse(String expression) {
@@ -1087,6 +1053,8 @@ org.opentest4j.AssertionFailedError: expected: <0> but was: <1>
 ```
 
 **EJ16. Código mínimo para que el test pase**
+
+Este código suma con "+" y resta con "-", manejando expresiones de 3 y lanza un error si hay letras.
 
 ```java
             public int parse(String expression) {
@@ -1164,6 +1132,8 @@ org.opentest4j.AssertionFailedError: expected: <3> but was: <8>
 
 **EJ17. Código mínimo para que el test pase**
 
+Este código evalúa expresiones matemáticas con suma y resta, manejando operaciones con 3 y ajustando los operadores entre ellos.
+
 ```java
         public int parse(String expression) {
         expression = expression.trim();
@@ -1229,8 +1199,6 @@ org.opentest4j.AssertionFailedError: expected: <3> but was: <8>
 
 ![Pasa](capturas/image17.png "Pasa")
 
-
-
 ### Ejemplo 18
 
 **INPUT y OUTPUT**: "9 - 5 + 4" → 8
@@ -1253,6 +1221,8 @@ org.opentest4j.AssertionFailedError: expected: <8> but was: <18>
 ```
 
 **EJ18. Código mínimo para que el test pase**
+
+Este código evalúa expresiones matemáticas con operaciones de suma y resta entre 3 y ajusta los cálculos según los operadores presentes entre ellos.
 
 ```java
     public int parse(String expression) {
@@ -1348,6 +1318,9 @@ org.opentest4j.AssertionFailedError: expected: <2> but was: <4>
 ```
 
 **EJ19. Código mínimo para que el test pase**
+
+Este código evalúa expresiones matemáticas con suma y resta, ajustando el cálculo según los operadores entre los números y enviando una excepción si se encuentra una letra.
+
 ```java
     public int parse(String expression) {
         expression = expression.trim();
@@ -1423,7 +1396,7 @@ org.opentest4j.AssertionFailedError: expected: <2> but was: <4>
 ### Ejemplo 20
 
 
-**INPUT y OUTPUT**: "9 + 1 - 6 - 2" → 2
+**INPUT y OUTPUT**: "-5 + 9" → 4
 
 **EJ20. Código de test**
 ```java
@@ -1445,16 +1418,94 @@ org.opentest4j.AssertionFailedError: expected: <2> but was: <4>
 
 **EJ20. Código mínimo para que el test pase**
 
+Este código toma una expresión matemática en texto, verifica que no tenga letras y luego hace sumas y restas según los números y operadores que contiene.
+
+```java
+public int parse(String expression) {
+        expression = expression.trim();
+        if((expression.matches(".*[A-Za-z].*"))){ 
+            throw new UnsupportedOperationException("Invalid expression");
+
+        }else{
+            String[] characters = expression.split(" ");
+            int inicio=0;
+
+            int numero=Integer.parseInt(characters[0]);
+            if(expression.length()==1){
+                return numero;
+            }else{
+
+                if(characters[1].equals("+")){
+                    for(int i=inicio;i<characters.length-1;i=i+2){
+                        if (characters[i+1].equals("+")){
+                                numero+=Integer.parseInt(characters[i+2]);
+                        }else{
+                            numero-=Integer.parseInt(characters[i+2]);
+                        }
+                    }
+                    return numero;
+                }else if (characters.length==3){
+                    int num1=Integer.parseInt(characters[0]);
+                    int result;
+                    if(num1>0){
+                        int num2=Integer.parseInt(characters[2]);
+                        result= num1 -num2;
+                    }else{
+                        int num2=Integer.parseInt(characters[2]);
+                        result= num1 +num2;
+                    }
+                    
+                    return result;
+
+                }else if (characters.length==5){
+
+                    int num1=Integer.parseInt(characters[0]);
+                    int num2=Integer.parseInt(characters[2]);
+                    int num3=Integer.parseInt(characters[4]);
+                    
+
+                    if(characters[1].equals("-")&&characters[3].equals("-")){
+                        
+                        return num1 -num2-num3;
+
+                    }else if(characters[1].equals("-")&&characters[3].equals("+")){
+                        
+                        return num1 -num2+num3;
+
+                    }else if(characters[1].equals("+")&&characters[3].equals("-")){
+                        return num1 +num2-num3;
+
+                    }else{
+                        return num1 +num2+num3;
+                    }
+                }else{
+
+                    int num1=Integer.parseInt(characters[0]);
+                    int num2=Integer.parseInt(characters[2]);
+                    int num3=Integer.parseInt(characters[4]);
+                    int num4=Integer.parseInt(characters[6]);
+                    int result= num1 -num2-num3-num4;
+                    return result;
+                }
+            }
+        }
+    }
+```
+**EJ20. Captura de que TODOS los test PASAN**
+
+![Pasa](capturas/image20.png "Pasa")
+
+**EJ20. Refactorización**
+
+Se mejora la validación de entradas, asegurándose de que la expresión no esté vacía ni sea null. Además, simplifica el manejo de los operadores y la inicialización de numero, haciendo el código más limpio y fácil de entender. Todo esto mejora la eficiencia y la legibilidad del proceso de cálculo.
+
 ```java
    public int parse(String expression) {
-        
         if (expression == null || expression.trim().isEmpty()) {
             throw new IllegalArgumentException("La expresión no puede estar vacía o ser null");
         }else{
-
             expression = expression.trim();
             String[] caracteres = expression.split(" ");
-
             if(expression.matches((".*[a-zA-Z].*"))){ 
                 throw new UnsupportedOperationException("Invalid expression");
                 
@@ -1470,8 +1521,7 @@ org.opentest4j.AssertionFailedError: expected: <2> but was: <4>
                     }
                 }else{
                     numero=Integer.parseInt(caracteres[0]);
-                }
-                
+                }  
                 for(int i=inicio;i<caracteres.length-1;i=i+2){
                     if(caracteres[i+1].equals("-")){
                         numero-=Integer.parseInt(caracteres[i+2]);
@@ -1481,13 +1531,13 @@ org.opentest4j.AssertionFailedError: expected: <2> but was: <4>
                     }
                 }
                 return numero;
-            }
-            
+            }   
         }
-
     }
 ```
-**EJ20. Captura de que TODOS los test PASAN**
+
+**EJ20. Captura de que TODOS los tests PASAN tras la refactorización**
 
 ![Pasa](capturas/image20.png "Pasa")
+
 
