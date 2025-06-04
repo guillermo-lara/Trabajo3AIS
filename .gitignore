@@ -18,3 +18,9 @@ solution/target/maven-status/maven-compiler-plugin/testCompile/default-testCompi
 solution/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
 solution/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
 solution/target/classes/es/codeurjc/test/CalculatorParser.class
+solution/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+solution/target/classes/es/codeurjc/test/CalculatorParser.class
+solution/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+solution/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+solution/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+solution/target/test-classes/es/codeurjc/test/CalculatorParserTest.class
