@@ -102,11 +102,9 @@ Se implementa un condicional para manejar ambos casos ("1" y "2")
 
 ```java
 public int parse(String expression) {
-    int num = 0;
-    if(expression.equals("1")) {
-        num = 1;
-    } else if(expression.equals("2")) {
-        num = 2;
+    int num = 2;
+    if(expression.equals("2")) {
+        return num;
     }
     return num;
 }
@@ -122,12 +120,10 @@ Se simplifica eliminando la variable temporal y usando returns directos
 
 ```java
 public int parse(String expression) {
-    if(expression.equals("1")) {
-        return 1;
-    } else if(expression.equals("2")) {
+    if(expression.equals("2")) {
         return 2;
     }
-    return 0;
+    return 1;
 }
 ```
 
@@ -326,7 +322,7 @@ public int parse(String expression) {
 
 **EJ5. Refactorización**
 
-Se quitan variables de más y yendo con lo que realmente se necesita.
+Se quitan variables de más, yendo con lo que realmente se necesita.
 
 ```java
  public int parse(String expression) {
@@ -392,28 +388,6 @@ El código suma 1, 2 o 3 números según cuántos haya en la expresión, asumien
 
 ```java
 public int parse(String expression) {
-    expression = expression.trim();
-    String[] parts = expression.split(" ");
-    
-    if(parts.length == 3) {
-        return Integer.parseInt(parts[0]) + Integer.parseInt(parts[2]);
-    } else if(parts.length == 5) {
-        return Integer.parseInt(parts[0]) + Integer.parseInt(parts[2]) + Integer.parseInt(parts[4]);
-    }
-    return Integer.parseInt(parts[0]);
-}
-```
-
-**EJ6. Captura de que TODOS los test PASAN**
-
-![Pasa](capturas/image6_1.png "Test pasa con implementación inicial")
-
-**EJ6. Refactorización**
-
-Se limpió el código quitando variables que no hacían falta todo el tiempo, haciéndolo más ordenado, claro y fácil de mantener.
-
-```java
-public int parse(String expression) {
         expression = expression.trim();
         
         int result=0;
@@ -431,6 +405,29 @@ public int parse(String expression) {
             return Integer.parseInt(characters[0]);
         }
         return result;
+}
+```
+
+**EJ6. Captura de que TODOS los test PASAN**
+
+![Pasa](capturas/image6_1.png "Test pasa con implementación inicial")
+
+**EJ6. Refactorización**
+
+Se limpió el código quitando variables que no hacían falta todo el tiempo, haciéndolo más ordenado, claro y fácil de mantener.
+
+
+```java
+public int parse(String expression) {
+    expression = expression.trim();
+    String[] parts = expression.split(" ");
+    
+    if(parts.length == 3) {
+        return Integer.parseInt(parts[0]) + Integer.parseInt(parts[2]);
+    } else if(parts.length == 5) {
+        return Integer.parseInt(parts[0]) + Integer.parseInt(parts[2]) + Integer.parseInt(parts[4]);
+    }
+    return Integer.parseInt(parts[0]);
 }
 ```
 
