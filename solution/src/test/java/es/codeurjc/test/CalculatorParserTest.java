@@ -60,47 +60,52 @@ public class CalculatorParserTest {
     @Test
     @DisplayName("No se permiten letras, se lanzará una excepción")
     public void test8() {
-        assertThrows(UnsupportedOperationException.class, () -> {
+        UnsupportedOperationException exception = assertThrows(UnsupportedOperationException.class, () -> {
             calculator.parse("A");
         });
+        assertEquals("Invalid expression", exception.getMessage());
     }
 
     @Test
     @DisplayName("No se permiten letras, se lanzará una excepción")
     public void test9() {
-        assertThrows(UnsupportedOperationException.class, () -> {
+        UnsupportedOperationException exception = assertThrows(UnsupportedOperationException.class, () -> {
             calculator.parse("B");
         });
+        assertEquals("Invalid expression", exception.getMessage());
     }
 
     @Test
     @DisplayName("No se permiten letras, se lanzará una excepción")
     public void test10() {
-        assertThrows(UnsupportedOperationException.class, () -> {
+        UnsupportedOperationException exception = assertThrows(UnsupportedOperationException.class, () -> {
             calculator.parse("k");
         });
+        assertEquals("Invalid expression", exception.getMessage());
+
     }
 
     @Test
     @DisplayName("No se permiten palabras, se lanzará una excepción")
     public void test11() {
-        assertThrows(UnsupportedOperationException.class, () -> {
+        UnsupportedOperationException exception = assertThrows(UnsupportedOperationException.class, () -> {
             calculator.parse("HoLa");
         });
+        assertEquals("Invalid expression", exception.getMessage());
     }
 
     @Test
     @DisplayName("No se permiten expresiones con letras")
     public void test12() {
-        assertThrows(UnsupportedOperationException.class, () -> {
+        UnsupportedOperationException exception = assertThrows(UnsupportedOperationException.class, () -> {
             calculator.parse("1 + A");
         });
+        assertEquals("Invalid expression", exception.getMessage());
     }
 
     @Test
     @DisplayName("Test operación de resta")
     public void test13() {
-        CalculatorParser calculator = new CalculatorParser();
         assertEquals(2, calculator.parse("5 - 3"));
     }
 

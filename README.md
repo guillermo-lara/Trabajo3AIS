@@ -526,13 +526,14 @@ public int parse(String expression) {
 
 **EJ8. Código de test**
 ```java
-@Test
-@DisplayName("No se permiten letras, se lanzará una excepción")
-public void testLetra() {
-    assertThrows(UnsupportedOperationException.class, () -> {
-        calculator.parse("A");
-    });
-}
+    @Test
+    @DisplayName("No se permiten letras, se lanzará una excepción")
+    public void testLetra() {
+        UnsupportedOperationException exception = assertThrows(UnsupportedOperationException.class, () -> {
+            calculator.parse("A");
+        });
+        assertEquals("Invalid expression", exception.getMessage());
+    }
 ```
 
 **EJ8. Mensaje del test añadido que NO PASA**
@@ -583,13 +584,14 @@ public int parse(String expression) {
 
 **EJ9. Código de test**
 ```java
-@Test
-@DisplayName("No se permiten letras, se lanzará una excepción")
-public void testLetra() {
-    assertThrows(UnsupportedOperationException.class, () -> {
-        calculator.parse("B");
-    });
-}
+    @Test
+    @DisplayName("No se permiten letras, se lanzará una excepción")
+    public void testLetra() {
+        UnsupportedOperationException exception = assertThrows(UnsupportedOperationException.class, () -> {
+            calculator.parse("B");
+        });
+        assertEquals("Invalid expression", exception.getMessage());
+    }
 ```
 
 **EJ9. Mensaje del test añadido que NO PASA**
@@ -637,13 +639,15 @@ public int parse(String expression) {
 
 **EJ10. Código de test**
 ```java
-@Test
-@DisplayName("No se permiten letras, se lanzará una excepción")
-public void testLetra() {
-    assertThrows(UnsupportedOperationException.class, () -> {
-        calculator.parse("k");
-    });
-}
+    @Test
+    @DisplayName("No se permiten letras, se lanzará una excepción")
+    public void testLetra() {
+        UnsupportedOperationException exception = assertThrows(UnsupportedOperationException.class, () -> {
+            calculator.parse("k");
+        });
+        assertEquals("Invalid expression", exception.getMessage());
+
+    }
 ```
 
 **EJ10. Mensaje del test añadido que NO PASA**
@@ -694,13 +698,14 @@ public int parse(String expression) {
 
 **EJ11. Código de test**
 ```java
-@Test
-@DisplayName("No se permiten palabras, se lanzará una excepción")
-public void testPalabra() {
-    assertThrows(UnsupportedOperationException.class, () -> {
-        calculator.parse("HoLa");
-    });
-}
+    @Test
+    @DisplayName("No se permiten palabras, se lanzará una excepción")
+    public void testPalabra() {
+        UnsupportedOperationException exception = assertThrows(UnsupportedOperationException.class, () -> {
+            calculator.parse("HoLa");
+        });
+        assertEquals("Invalid expression", exception.getMessage());
+    }
 ```
 
 **EJ11. Mensaje del test añadido que NO PASA**
@@ -750,13 +755,14 @@ Este código suma números separados por "+" en una cadena, y lanza error si la 
 
 **EJ12. Código de test**
 ```java
-@Test
-@DisplayName("No se permiten expresiones con letras")
-public void testExpresionConLetra() {
-    assertThrows(UnsupportedOperationException.class, () -> {
-        calculator.parse("1 + A");
-    });
-}
+    @Test
+    @DisplayName("No se permiten expresiones con letras")
+    public void testExpresionConLetra() {
+        UnsupportedOperationException exception = assertThrows(UnsupportedOperationException.class, () -> {
+            calculator.parse("1 + A");
+        });
+        assertEquals("Invalid expression", exception.getMessage());
+    }
 ```
 
 **EJ12. Mensaje del test añadido que NO PASA**
@@ -809,7 +815,6 @@ Este código suma números separados por "+" y lanza un error si la expresión c
 @Test
 @DisplayName("Test operación de resta")
 public void testResta() {
-    CalculatorParser calculator = new CalculatorParser();
     assertEquals(2, calculator.parse("5 - 3"));
 }
 ```
