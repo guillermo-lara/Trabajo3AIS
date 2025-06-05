@@ -18,7 +18,7 @@ public class CalculatorParserTest {
     
     @Test
     @DisplayName("Un número se devuelve como tal")
-    public void testSingleNumber() {
+    public void test1() {
         assertEquals(1, calculator.parse("1"));
     }
 }
@@ -27,10 +27,6 @@ public class CalculatorParserTest {
 **EJ1. Mensaje del test añadido que NO PASA**
 ```log
 java.lang.UnsupportedOperationException: Not implemented yet 
-at es.codeurjc.test.CalculatorParser.parse(CalculatorParser.java:48) 
-at es.codeurjc.test.CalculatorParserTest.testSingleNumber(CalculatorParserTest.java:20)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) 
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 ```
 
 **EJ1. Código mínimo para que el test pase**
@@ -68,55 +64,22 @@ public int parse(String expression) {
 
 **EJ2. Código de test**
 ```java
-public class CalculatorParserTest {
-    private CalculatorParser calculator;
-    
-    @BeforeEach
-    public void setUp() {
-        calculator = new CalculatorParser();
-    }
-    
     @Test
     @DisplayName("Un número se devuelve como tal")
-    public void testSingleNumber() {
+    public void test2() {
         assertEquals(2, calculator.parse("2"));
     }
-}
+
 ```
 
 **EJ2. Mensaje del test añadido que NO PASA**
 ```log
 org.opentest4j.AssertionFailedError: expected: <2> but was: <1>
-at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
-at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
-at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
-at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
-at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
-at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
-at es.codeurjc.test.CalculatorParserTest.testSingleNumber(CalculatorParserTest.java:20)
 ```
 
 **EJ2. Código mínimo para que el test pase**
 
 Se implementa un condicional para manejar ambos casos ("1" y "2")
-
-```java
-public int parse(String expression) {
-    int num = 2;
-    if(expression.equals("2")) {
-        return num;
-    }
-    return num;
-}
-```
-
-**EJ2. Captura de que TODOS los test PASAN**
-
-![Pasa](capturas/image2_1.png "Test pasa con implementación inicial")
-
-**EJ2. Refactorización**
-
-Se simplifica eliminando la variable temporal y usando returns directos
 
 ```java
 public int parse(String expression) {
@@ -127,9 +90,13 @@ public int parse(String expression) {
 }
 ```
 
-**EJ2. Captura de que TODOS los tests PASAN tras la refactorización**
+**EJ2. Captura de que TODOS los test PASAN**
 
-![Pasa](capturas/image2_2.png "Test pasa tras refactorización")
+![Pasa](capturas/image2_1.png "Test pasa con implementación inicial")
+
+**EJ2. Refactorización**
+
+En este caso consideramos que no hace falta refactorización.
 
 ### Ejemplo 3
 
@@ -138,44 +105,25 @@ public int parse(String expression) {
 
 **EJ3. Código de test**
 ```java
-public class CalculatorParserTest {
-    private CalculatorParser calculator;
-    
-    @BeforeEach
-    public void setUp() {
-        calculator = new CalculatorParser();
-    }
-    
     @Test
     @DisplayName("Un número se devuelve como tal")
-    public void testSingleNumber() {
+    public void test3() {
         assertEquals(3, calculator.parse("3"));
     }
-}
 ```
 
 **EJ3. Mensaje del test añadido que NO PASA**
 ```log
-org.opentest4j.AssertionFailedError: expected: <3> but was: <0>
-at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
-at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
-at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
-at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
-at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
-at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
-at es.codeurjc.test.CalculatorParserTest.testSingleNumber(CalculatorParserTest.java:20)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+org.opentest4j.AssertionFailedError: expected: <3> but was: <1>
 ```
 
 **EJ3. Código mínimo para que el test pase**
-
+Si input es 1, devolverá 1; si es 2, devuelve 2 y, en cualquier otro caso, devuelve 3.
 Se implementa la conversión directa del String a int usando Integer.parseInt()
 
 ```java
 public int parse(String expression) {
-    int numero = Integer.parseInt(expression);
-    return numero;
+    return Integer.parseInt(expression);
 }
 ```
 
@@ -185,18 +133,7 @@ public int parse(String expression) {
 
 **EJ3. Refactorización**
 
-Se simplifica el código eliminando la variable temporal innecesaria
-
-```java
-public int parse(String expression) {
-    return Integer.parseInt(expression);
-}
-```
-
-**EJ3. Captura de que TODOS los tests PASAN tras la refactorización**
-
-![Pasa](capturas/image3_2.png "Test pasa tras refactorización")
-
+En este caso consideramos que no hace falta refactorización.
 
 ### Ejemplo 4
 
@@ -204,30 +141,17 @@ public int parse(String expression) {
 
 **EJ4. Código de test**
 ```java
-public class CalculatorParserTest {
-    private CalculatorParser calculator;
-    
-    @BeforeEach
-    public void setUp() {
-        calculator = new CalculatorParser();
-    }
-    
+
     @Test
     @DisplayName("Suma simple de dos números")
-    public void testSumaSimple() {
+    public void test4() {
         assertEquals(2, calculator.parse("1 + 1"));
     }
-}
 ```
 
 **EJ4. Mensaje del test añadido que NO PASA**
 ```log
 java.lang.NumberFormatException: For input string: "1 + 1"
-at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
-at java.base/java.lang.Integer.parseInt(Integer.java:662)
-at java.base/java.lang.Integer.parseInt(Integer.java:778)
-at es.codeurjc.test.CalculatorParser.parse(CalculatorParser.java:66)
-at es.codeurjc.test.CalculatorParserTest.testSuma(CalculatorParserTest.java:27)
 ```
 
 **EJ4. Código mínimo para que el test pase**
@@ -272,35 +196,21 @@ public int parse(String expression) {
 
 **EJ5. Código de test**
 ```java
-public class CalculatorParserTest {
-    private CalculatorParser calculator;
-    
-    @BeforeEach
-    public void setUp() {
-        calculator = new CalculatorParser();
-    }
-    
     @Test
     @DisplayName("Suma de dos números diferentes")
-    public void testSumaDiferentesNumeros() {
+    public void test5() {
         assertEquals(5, calculator.parse("2 + 3"));
     }
-}
 ```
 
 **EJ5. Mensaje del test añadido que NO PASA**
 ```log
 java.lang.NumberFormatException: For input string: "2 + 3"
-at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
-at java.base/java.lang.Integer.parseInt(Integer.java:662)
-at java.base/java.lang.Integer.parseInt(Integer.java:778)
-at es.codeurjc.test.CalculatorParser.parse(CalculatorParser.java:66)
-at es.codeurjc.test.CalculatorParserTest.testSuma(CalculatorParserTest.java:27)
 ```
 
 **EJ5. Código mínimo para que el test pase**
 
-Hace la suma si hay dos números con un "+" en medio, y si no, solo devuelve el número que le pasaste.
+Hace la suma si hay dos números con un "+" en medio, y si no, solo devuelve el número que le pasaste. Para ello divimos los caracteres del String con la función trim().
 
 ```java
 public int parse(String expression) {
@@ -312,7 +222,10 @@ public int parse(String expression) {
         int num2 = Integer.parseInt(parts[2]);
         return num1 + num2;
     }
+    else if (parts.length == 1){
     return Integer.parseInt(expression);
+    }
+    else throw new UnsupportedOperationException("Not implemented yet");
 }
 ```
 
@@ -322,31 +235,7 @@ public int parse(String expression) {
 
 **EJ5. Refactorización**
 
-Se quitan variables de más, yendo con lo que realmente se necesita.
-
-```java
- public int parse(String expression) {
-        expression = expression.trim();
-        int num1;
-  int num2;
-        int result=0;
-        String[] characters = expression.split(" ");
-   
- if(characters.length==3){
-            num1=Integer.parseInt(characters[0]);
-            num2=Integer.parseInt(characters[2]);
-            result= num1 +num2;
-        }else{
-            return Integer.parseInt(characters[0]);
-        }
-        return result;
-    	  }
-```
-
-**EJ5. Captura de que TODOS los tests PASAN tras la refactorización**
-
-![Pasa](capturas/image5_2.png "Test pasa tras refactorización")
-
+En este caso consideramos que no hace falta refactorización.
 
 ### Ejemplo 6
 
@@ -354,57 +243,36 @@ Se quitan variables de más, yendo con lo que realmente se necesita.
 
 **EJ6. Código de test**
 ```java
-public class CalculatorParserTest {
-    private CalculatorParser calculator;
-    
-    @BeforeEach
-    public void setUp() {
-        calculator = new CalculatorParser();
-    }
-    
     @Test
     @DisplayName("Suma de tres números")
-    public void testSumaTresNumeros() {
+    public void test6() {
         assertEquals(9, calculator.parse("2 + 3 + 4"));
     }
-}
 ```
 
 **EJ6. Mensaje del test añadido que NO PASA**
 ```log
-org.opentest4j.AssertionFailedError: expected: <9> but was: <5>
-at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
-at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
-at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
-at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
-at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
-at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
-at es.codeurjc.test.CalculatorParserTest.testSuma(CalculatorParserTest.java:27)
+java.lang.UnsupportedOperationException: Not implemented yet
 ```
 
 **EJ6. Código mínimo para que el test pase**
 
-El código suma 1, 2 o 3 números según cuántos haya en la expresión, asumiendo que todo está bien escrito.
+El codigo divide el String que se pasa por terminal en un Array de Strungs, los numeros pares del Array de Strings contienen los números y dependiendo del tamaño del Array se procesa de una manera u otra
 
 ```java
 public int parse(String expression) {
-        expression = expression.trim();
-        
-        int result=0;
-        String[] characters = expression.split(" ");
-        if (characters.length==3) {
-            int num1=Integer.parseInt(characters[0]);
-            int num2=Integer.parseInt(characters[2]);
-            result= num1 +num2;
-        }else if(characters.length==5){
-            int num1=Integer.parseInt(characters[0]);
-            int num2=Integer.parseInt(characters[2]);
-            int num3=Integer.parseInt(characters[4]);
-            result= num1 +num2+num3;
-        }else{
-            return Integer.parseInt(characters[0]);
-        }
-        return result;
+    expression = expression.trim();
+    String[] parts = expression.split(" ");
+    
+    if (parts.lenght == 1){
+        return Integer.parseInt(parts[0]);
+    }
+    else if(parts.length == 3) {
+        return Integer.parseInt(parts[0]) + Integer.parseInt(parts[2]);
+    } else if(parts.length == 5) {
+        return Integer.parseInt(parts[0]) + Integer.parseInt(parts[2]) + Integer.parseInt(parts[4]);
+    }
+    else throw new UnsupportedOperationException("Not implemented yet");
 }
 ```
 
@@ -414,26 +282,7 @@ public int parse(String expression) {
 
 **EJ6. Refactorización**
 
-Se limpió el código quitando variables que no hacían falta todo el tiempo, haciéndolo más ordenado, claro y fácil de mantener.
-
-
-```java
-public int parse(String expression) {
-    expression = expression.trim();
-    String[] parts = expression.split(" ");
-    
-    if(parts.length == 3) {
-        return Integer.parseInt(parts[0]) + Integer.parseInt(parts[2]);
-    } else if(parts.length == 5) {
-        return Integer.parseInt(parts[0]) + Integer.parseInt(parts[2]) + Integer.parseInt(parts[4]);
-    }
-    return Integer.parseInt(parts[0]);
-}
-```
-
-**EJ6. Captura de que TODOS los tests PASAN tras la refactorización**
-
-![Pasa](capturas/image6_2.png "Test pasa tras refactorización")
+En este caso consideramos que no hace falta refactorización.
 
 ### Ejemplo 7
 
@@ -441,53 +290,33 @@ public int parse(String expression) {
 
 **EJ7. Código de test**
 ```java
-public class CalculatorParserTest {
-    private CalculatorParser calculator;
-
-    @BeforeEach
-    public void setUp() {
-        calculator = new CalculatorParser();
-    }
-    
     @Test
     @DisplayName("Un número se devuelve como tal")
-    public void testSingleNumber() {
+    public void test7() {
         assertEquals(10, calculator.parse("1 + 2 + 3 + 4"));
     }
-}
 ```
 
 **EJ7. Mensaje del test añadido que NO PASA**
 
 ```log
-org.opentest4j.AssertionFailedError: expected: <10> but was: <6>
-        at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151) at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
-        at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
-        at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
-        at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
-        at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
-        at es.codeurjc.test.CalculatorParserTest.testSuma(CalculatorParserTest.java:27)
-        at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-        at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-        at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+java.lang.UnsupportedOperationException: Not implemented yet
 ```
 
 **EJ7. Código mínimo para que el test pase**
 
-Implementación inicial que hace pasar el test sumando todos los números.
+Nos hemos dado cuenta que siempre hay un espacio entre caracteres que podemos utilizar para separarlos y poder capturar los datos que necesitamos. Sigue siempre una misma fórmula, "número" "+" "número" o "número" a partir de aqui hemos desarrollado un código que sigue esta fórmula.
 
 ```java
 public int parse(String expression) {
     expression = expression.trim();
     String[] caracteres = expression.split(" ");
     
-    int inicio=0;
-    int numero=0;
-    numero=Integer.parseInt(caracteres[0]);
-    for(int i=inicio;i<caracteres.length-1;i=i+2){
+    int numero = Integer.parseInt(caracteres[0]);
+    for(int i = 0; i < caracteres.length - 1; i = i + 2){
         if (caracteres[i+1].equals("+")){
-            numero+=Integer.parseInt(caracteres[i+2]);
-        }
+            numero += Integer.parseInt(caracteres[i+2]);
+        } else throw new UnsupportedOperationException("Not implemented yet");
     }
     return numero;
 }
@@ -499,26 +328,7 @@ public int parse(String expression) {
 
 **EJ7. Refactorización**
 
-Se eliminó la línea redundante de inicialización de `numero` y se mejoró la legibilidad.
-
-```java
-public int parse(String expression) {
-    expression = expression.trim();
-    String[] caracteres = expression.split(" ");
-    
-    int numero = Integer.parseInt(caracteres[0]);
-    for(int i = 0; i < caracteres.length - 1; i = i + 2){
-        if (caracteres[i+1].equals("+")){
-            numero += Integer.parseInt(caracteres[i+2]);
-        }
-    }
-    return numero;
-}
-```
-
-**EJ7. Captura de que TODOS los tests PASAN tras la refactorización**
-
-![Pasa](capturas/image7_2.png "Pasa")
+En este caso consideramos que no hace falta refactorización.
 
 ### Ejemplo 8
 
@@ -528,7 +338,7 @@ public int parse(String expression) {
 ```java
     @Test
     @DisplayName("No se permiten letras, se lanzará una excepción")
-    public void testLetra() {
+    public void test8() {
         UnsupportedOperationException exception = assertThrows(UnsupportedOperationException.class, () -> {
             calculator.parse("A");
         });
@@ -562,12 +372,11 @@ public int parse(String expression) {
         throw new UnsupportedOperationException("Invalid expression");
     }
     String[] caracteres = expression.split(" ");
-    
     int numero = Integer.parseInt(caracteres[0]);
     for(int i = 0; i < caracteres.length - 1; i = i + 2) {
         if (caracteres[i+1].equals("+")) {
             numero += Integer.parseInt(caracteres[i+2]);
-        }
+        } else throw new UnsupportedOperationException("Not implemented yet");
     }
     return numero;
 }
@@ -576,6 +385,10 @@ public int parse(String expression) {
 **EJ8. Captura de que TODOS los test PASAN**
 
 ![Pasa](capturas/image8.png "Pasa")
+
+**EJ8. Refactorización**
+
+En este caso consideramos que no hace falta refactorización.
 
 ### Ejemplo 9
 
@@ -586,7 +399,7 @@ public int parse(String expression) {
 ```java
     @Test
     @DisplayName("No se permiten letras, se lanzará una excepción")
-    public void testLetra() {
+    public void test9() {
         UnsupportedOperationException exception = assertThrows(UnsupportedOperationException.class, () -> {
             calculator.parse("B");
         });
@@ -623,7 +436,7 @@ public int parse(String expression) {
     for(int i = 0; i < caracteres.length - 1; i = i + 2) {
         if (caracteres[i+1].equals("+")) {
             numero += Integer.parseInt(caracteres[i+2]);
-        }
+        } else throw new UnsupportedOperationException("Not implemented yet");
     }
     return numero;
 }
@@ -632,6 +445,10 @@ public int parse(String expression) {
 **EJ9. Captura de que TODOS los test PASAN**
 
 ![Pasa](capturas/image9.png "Pasa")
+
+**EJ9. Refactorización**
+
+En este caso consideramos que no hace falta refactorización.
 
 ### Ejemplo 10
 
@@ -679,7 +496,7 @@ public int parse(String expression) {
     for(int i = 0; i < caracteres.length - 1; i = i + 2) {
         if (caracteres[i+1].equals("+")) {
             numero += Integer.parseInt(caracteres[i+2]);
-        }
+        } else throw new UnsupportedOperationException("Not implemented yet");
     }
     return numero;
 }
@@ -689,7 +506,9 @@ public int parse(String expression) {
 
 ![Pasa](capturas/image10.png "Pasa")
 
+**EJ10. Refactorización**
 
+En este caso consideramos que no hace falta refactorización.
 
 ### Ejemplo 11
 
@@ -700,7 +519,7 @@ public int parse(String expression) {
 ```java
     @Test
     @DisplayName("No se permiten palabras, se lanzará una excepción")
-    public void testPalabra() {
+    public void test10() {
         UnsupportedOperationException exception = assertThrows(UnsupportedOperationException.class, () -> {
             calculator.parse("HoLa");
         });
@@ -737,7 +556,7 @@ Este código suma números separados por "+" en una cadena, y lanza error si la 
         for(int i=inicio;i<caracteres.length-1;i=i+2){
             if (caracteres[i+1].equals("+")){
                     numero+=Integer.parseInt(caracteres[i+2]);
-            }
+            }else throw new UnsupportedOperationException("Not implemented yet");
         }
         return numero;
     }
@@ -747,6 +566,9 @@ Este código suma números separados por "+" en una cadena, y lanza error si la 
 
 ![Pasa](capturas/image11.png "Pasa")
 
+**EJ11. Refactorización**
+
+En este caso consideramos que no hace falta refactorización.
 
 ### Ejemplo 12
 
@@ -757,7 +579,7 @@ Este código suma números separados por "+" en una cadena, y lanza error si la 
 ```java
     @Test
     @DisplayName("No se permiten expresiones con letras")
-    public void testExpresionConLetra() {
+    public void test12() {
         UnsupportedOperationException exception = assertThrows(UnsupportedOperationException.class, () -> {
             calculator.parse("1 + A");
         });
@@ -794,7 +616,7 @@ Este código suma números separados por "+" y lanza un error si la expresión c
         for(int i=inicio;i<caracteres.length-1;i=i+2){
             if (caracteres[i+1].equals("+")){
                     numero+=Integer.parseInt(caracteres[i+2]);
-            }
+            }else throw new UnsupportedOperationException("Not implemented yet");
         }
         return numero;
     }
@@ -804,7 +626,9 @@ Este código suma números separados por "+" y lanza un error si la expresión c
 
 ![Pasa](capturas/image12.png "Pasa")
 
+**EJ12. Refactorización**
 
+En este caso consideramos que no hace falta refactorización.
 
 ### Ejemplo 13
 
@@ -814,7 +638,7 @@ Este código suma números separados por "+" y lanza un error si la expresión c
 ```java
 @Test
 @DisplayName("Test operación de resta")
-public void testResta() {
+public void test13() {
     assertEquals(2, calculator.parse("5 - 3"));
 }
 ```
@@ -822,9 +646,7 @@ public void testResta() {
 **EJ13. Mensaje del test añadido que NO PASA**
 
 ```log
-org.opentest4j.AssertionFailedError: expected: <2> but was: <5>
-        at org.junit.jupiter.api.AssertionFailureBuilder.build(...)
-        ...
+java.lang.UnsupportedOperationException: Not implemented yet
 ```
 
 **EJ13. Código mínimo para que el test pase**
@@ -867,7 +689,7 @@ Este código evalúa sumas de números (como "1 + 2 + 3"), lanza error si hay le
 
 **EJ13. Refactorización**
 
-Se quitó una variable que no hacía falta y se devolvió el valor directo, dejando el código más limpio y rápido de leer.
+Se quitó una variable que no hacía falta, se devolvió el valor directo, se junto el else if y se añadió el throw del Not implemented yet, dejando el código más limpio y rápido de leer.
 
 ```java
 public int parse(String expression) {
@@ -888,12 +710,9 @@ public int parse(String expression) {
                     }
                 }
                 return numero;
-            }else{
-                if (expression.equals("5 - 3")){
-                    return 2;
-                }
-            }
-            return 0;
+            }else if (expression.equals("5 - 3")){
+                return 2;
+            } else throw new UnsupportedOperationException("Not implemented yet");
         }
     }
 ```
@@ -910,7 +729,7 @@ public int parse(String expression) {
 ```java
 @Test
 @DisplayName("Test resta con resultado negativo")
-public void testRestaNegativa() {
+public void test14() {
     assertEquals(-1, calculator.parse("1 - 2"));
 }
 ```
@@ -918,9 +737,7 @@ public void testRestaNegativa() {
 **EJ14. Mensaje del test añadido que NO PASA**
 
 ```log
-org.opentest4j.AssertionFailedError: expected: <-1> but was: <0>
-        at org.junit.jupiter.api.AssertionFailureBuilder.build(...)
-        ...
+java.lang.UnsupportedOperationException: Not implemented yet 
 ```
 
 **EJ14. Código mínimo para que el test pase**
@@ -946,14 +763,11 @@ Este código suma números si la expresión usa "+", resuelve "5 - 3" como caso 
                     }
                 }
                 return numero;
-            }else{
-                if (expression.equals("5 - 3")){
-                    int result=2;
-                    return result;
-                }else{
+            }else if (expression.equals("5 - 3")){
+                    return -2;
+            }else if (expression.equals("1 - 2")){
                     return -1;
-                }
-            }
+            }else throw new UnsupportedOperationException("Not implemented yet");
         }
     }
 
@@ -962,8 +776,6 @@ Este código suma números si la expresión usa "+", resuelve "5 - 3" como caso 
 **EJ14. Captura de que TODOS los test PASAN**
 
 ![Pasa](capturas/image14.png "Pasa")
-
-
 
 ### Ejemplo 15
 
@@ -982,14 +794,12 @@ public void testMultiplesRestas() {
 **EJ15. Mensaje del test añadido que NO PASA**
 
 ```log
-org.opentest4j.AssertionFailedError: expected: <4> but was: <5>
-        at org.junit.jupiter.api.AssertionFailureBuilder.build(...)
-        ...
+java.lang.UnsupportedOperationException: Not implemented yet 
 ```
 
 **EJ15. Código mínimo para que el test pase**
 
-Este código suma números con "+" y resta números con "-", lanzando error si hay letras en la expresión.
+Se ha programado este código teniendo en cuenta de que la cadena de caracteres si tiene un "+" todas las funciones de serán restas, si al principio entra un "-" dependiendo de la cantidad de caracteres hará una resta con 2 números o 3 números.
 
 ```java
         public int parse(String expression) {
@@ -1008,26 +818,14 @@ Este código suma números con "+" y resta números con "-", lanzando error si h
                 for(int i=inicio;i<characters.length-1;i=i+2){
                     if (characters[i+1].equals("+")){
                             numero+=Integer.parseInt(characters[i+2]);
-                    }
+                    }else throw new UnsupportedOperationException("Not implemented yet");
                 }
                 return numero;
-            }else{
-
-                if (characters.length==3){
-
-                    int num1=Integer.parseInt(characters[0]);
-                    int num2=Integer.parseInt(characters[2]);
-                    int result= num1 -num2;
-                    return result;
-                }else{
-
-                    int num1=Integer.parseInt(characters[0]);
-                    int num2=Integer.parseInt(characters[2]);
-                    int num3=Integer.parseInt(characters[4]);
-                    int result= num1 -num2-num3;
-                    return result;
-                }
-            }
+            }else if (characters.length==3){
+                return Integer.parseInt(characters[0]) - Integer.parseInt(characters[2]);
+            }else if (characters.length==5){
+                return Integer.parseInt(characters[0]) - Integer.parseInt(characters[2]) - Integer.parseInt(characters[4]);
+            }else throw new UnsupportedOperationException("Not implemented yet");
         }
     }
 ```
@@ -1045,7 +843,7 @@ Este código suma números con "+" y resta números con "-", lanzando error si h
 ```java
 @Test
 @DisplayName("Test múltiples restas consecutivas con 4 operandos")
-public void testMultiplesRestasCuatroOperandos() {
+public void test16() {
     assertEquals(0, calculator.parse("9 - 5 - 3 - 1"));
 }
 ```
@@ -1053,17 +851,15 @@ public void testMultiplesRestasCuatroOperandos() {
 **EJ16. Mensaje del test añadido que NO PASA**
 
 ```log
-org.opentest4j.AssertionFailedError: expected: <0> but was: <1>
-        at org.junit.jupiter.api.AssertionFailureBuilder.build(...)
-        ...
+java.lang.UnsupportedOperationException: Not implemented yet
 ```
 
 **EJ16. Código mínimo para que el test pase**
 
-Este código suma con "+" y resta con "-", manejando expresiones de 3 y lanza un error si hay letras.
+Nos hemos dado cuenta que el primer simbolo indica el tipo de operación que se va a realizar, si el primer simbolo es un "+" se realizaran sumas hasta llegar al final del Array, si fuese un "-" se realizarian restas.
 
 ```java
-            public int parse(String expression) {
+    public int parse(String expression) {
         expression = expression.trim();
         if((expression.matches(".*[A-Za-z].*"))){ 
             throw new UnsupportedOperationException("Invalid expression");
@@ -1079,34 +875,19 @@ Este código suma con "+" y resta con "-", manejando expresiones de 3 y lanza un
                 for(int i=inicio;i<characters.length-1;i=i+2){
                     if (characters[i+1].equals("+")){
                             numero+=Integer.parseInt(characters[i+2]);
-                    }
+                    }else throw new UnsupportedOperationException("Not implemented yet");
                 }
                 return numero;
-            }else{
-
-                if (characters.length==3){
-
-                    int num1=Integer.parseInt(characters[0]);
-                    int num2=Integer.parseInt(characters[2]);
-                    int result= num1 -num2;
-                    return result;
-                }else if (characters.length==5){
-
-                    int num1=Integer.parseInt(characters[0]);
-                    int num2=Integer.parseInt(characters[2]);
-                    int num3=Integer.parseInt(characters[4]);
-                    int result= num1 -num2-num3;
-                    return result;
-                }else{
-                    int num1=Integer.parseInt(characters[0]);
-                    int num2=Integer.parseInt(characters[2]);
-                    int num3=Integer.parseInt(characters[4]);
-                    int num4=Integer.parseInt(characters[6]);
-                    int result= num1 -num2-num3-num4;
-                    return result;
+            }else if(characters[1].equals("-")){
+                for(int i=inicio;i<characters.length-1;i=i+2){
+                    if (characters[i+1].equals("-")){
+                            numero-=Integer.parseInt(characters[i+2]);
+                    }else throw new UnsupportedOperationException("Not implemented yet");
                 }
-            }
-        	}
+                return numero;
+            }else throw new UnsupportedOperationException("Not implemented yet");
+        }
+    }
 ```
 
 
@@ -1123,7 +904,7 @@ Este código suma con "+" y resta con "-", manejando expresiones de 3 y lanza un
 ```java
 @Test
 @DisplayName("Test combinación de sumas y restas")
-public void testCombinacionSumasRestas() {
+public void test17() {
     assertEquals(3, calculator.parse("7 + 1 - 5"));
 }
 ```
@@ -1131,17 +912,15 @@ public void testCombinacionSumasRestas() {
 **EJ17. Mensaje del test añadido que NO PASA**
 
 ```log
-org.opentest4j.AssertionFailedError: expected: <3> but was: <8>
-        at org.junit.jupiter.api.AssertionFailureBuilder.build(...)
-        ...
+java.lang.UnsupportedOperationException: Not implemented yet
 ```
 
 **EJ17. Código mínimo para que el test pase**
 
-Este código evalúa expresiones matemáticas con suma y resta, manejando operaciones con 3 y ajustando los operadores entre ellos.
+Ahora si el primer símbolo es "+" no indica que el resto de operaciones vayan a ser sumas, por lo que hay que añadir en el for dedicado a las sumas que tambíen pueden haber restas.
 
 ```java
-        public int parse(String expression) {
+    public int parse(String expression) {
         expression = expression.trim();
         if((expression.matches(".*[A-Za-z].*"))){ 
             throw new UnsupportedOperationException("Invalid expression");
@@ -1149,54 +928,28 @@ Este código evalúa expresiones matemáticas con suma y resta, manejando operac
         }else{
             String[] characters = expression.split(" ");
             int inicio=0;
-
             int numero=Integer.parseInt(characters[0]);
             if(expression.length()==1){
                 return numero;
-            }else{
-
-                if(characters[1].equals("+")){
-                    for(int i=inicio;i<characters.length-1;i=i+2){
-                        if (characters[i+1].equals("+")){
-                                numero+=Integer.parseInt(characters[i+2]);
-                        }else{
-                            numero-=Integer.parseInt(characters[i+2]);
-                        }
-                    }
-                    return numero;
-                }else if (characters.length==3){
-
-                    int num1=Integer.parseInt(characters[0]);
-                    int num2=Integer.parseInt(characters[2]);
-                    int result= num1 -num2;
-                    return result;
-
-                }else if (characters.length==5){
-
-                    int num1=Integer.parseInt(characters[0]);
-                    int num2=Integer.parseInt(characters[2]);
-                    int num3=Integer.parseInt(characters[4]);
-                    
-
-                    if(characters[1].equals("-")&&characters[3].equals("-")){
-                        
-                        return num1 -num2-num3;
-
-                    }else  if(characters[1].equals("+")&&characters[3].equals("-")){
-                        return num1 +num2-num3;
-
-                    }else{
-                        return num1 +num2+num3;
-                    }
-                }else{
-                    int num1=Integer.parseInt(characters[0]);
-                    int num2=Integer.parseInt(characters[2]);
-                    int num3=Integer.parseInt(characters[4]);
-                    int num4=Integer.parseInt(characters[6]);
-                    int result= num1 -num2-num3-num4;
-                    return result;
-                }
             }
+            if(characters[1].equals("+")){
+                for(int i=inicio;i<characters.length-1;i=i+2){
+                    if (characters[i+1].equals("+")){
+                            numero+=Integer.parseInt(characters[i+2]);
+                    }else if (characters[i+1].equals("-")){
+                            numero-= 5;
+                    }
+                    else throw new UnsupportedOperationException("Not implemented yet");
+                }
+                return numero;
+            }else if(characters[1].equals("-")){
+                for(int i=inicio;i<characters.length-1;i=i+2){
+                    if (characters[i+1].equals("-")){
+                            numero-=Integer.parseInt(characters[i+2]);
+                    }else throw new UnsupportedOperationException("Not implemented yet");
+                }
+                return numero;
+            }else throw new UnsupportedOperationException("Not implemented yet");
         }
     }
 ```
@@ -1213,7 +966,7 @@ Este código evalúa expresiones matemáticas con suma y resta, manejando operac
 ```java
 @Test
 @DisplayName("Test combinación de resta y suma")
-public void testCombinacionRestaSuma() {
+public void test18() {
     assertEquals(8, calculator.parse("9 - 5 + 4"));
 }
 ```
@@ -1221,14 +974,12 @@ public void testCombinacionRestaSuma() {
 **EJ18. Mensaje del test añadido que NO PASA**
 
 ```log
-org.opentest4j.AssertionFailedError: expected: <8> but was: <18>
-        at org.junit.jupiter.api.AssertionFailureBuilder.build(...)
-        ...
+java.lang.UnsupportedOperationException: Not implemented yet
 ```
 
 **EJ18. Código mínimo para que el test pase**
 
-Este código evalúa expresiones matemáticas con operaciones de suma y resta entre 3 y ajusta los cálculos según los operadores presentes entre ellos.
+Ahora si el primer símbolo es "-" no indica que el resto de operaciones vayan a ser restas, por lo que hay que añadir en el for dedicado a las restas que tambíen pueden haber sumas.
 
 ```java
     public int parse(String expression) {
@@ -1239,59 +990,31 @@ Este código evalúa expresiones matemáticas con operaciones de suma y resta en
         }else{
             String[] characters = expression.split(" ");
             int inicio=0;
-
             int numero=Integer.parseInt(characters[0]);
             if(expression.length()==1){
                 return numero;
-            }else{
-
-                if(characters[1].equals("+")){
-                    for(int i=inicio;i<characters.length-1;i=i+2){
-                        if (characters[i+1].equals("+")){
-                                numero+=Integer.parseInt(characters[i+2]);
-                        }else if(i<4){
-                            numero-=Integer.parseInt(characters[i+2]);
-                        }
-                    }
-                    return numero;
-                }else if (characters.length==3){
-
-                    int num1=Integer.parseInt(characters[0]);
-                    int num2=Integer.parseInt(characters[2]);
-                    int result= num1 -num2;
-                    return result;
-
-                }else if (characters.length==5){
-
-                    int num1=Integer.parseInt(characters[0]);
-                    int num2=Integer.parseInt(characters[2]);
-                    int num3=Integer.parseInt(characters[4]);
-                    
-
-                    if(characters[1].equals("-")&&characters[3].equals("-")){
-                        
-                        return num1 -num2-num3;
-
-                    }else if(characters[1].equals("-")&&characters[3].equals("+")){
-                        
-                        return num1 -num2+num3;
-
-                    }else if(characters[1].equals("+")&&characters[3].equals("-")){
-                        return num1 +num2-num3;
-
-                    }else{
-                        return num1 +num2+num3;
-                    }
-                }else{
-
-                    int num1=Integer.parseInt(characters[0]);
-                    int num2=Integer.parseInt(characters[2]);
-                    int num3=Integer.parseInt(characters[4]);
-                    int num4=Integer.parseInt(characters[6]);
-                    int result= num1 -num2-num3-num4;
-                    return result;
-                }
             }
+            if(characters[1].equals("+")){
+                for(int i=inicio;i<characters.length-1;i=i+2){
+                    if (characters[i+1].equals("+")){
+                            numero+=Integer.parseInt(characters[i+2]);
+                    }else if (characters[i+1].equals("-")){
+                            numero-= 5;
+                    }
+                    else throw new UnsupportedOperationException("Not implemented yet");
+                }
+                return numero;
+            }else if(characters[1].equals("-")){
+                for(int i=inicio;i<characters.length-1;i=i+2){
+                    if (characters[i+1].equals("-")){
+                            numero-=Integer.parseInt(characters[i+2]);
+                    }else if (characters[i+1].equals("+")){
+                            numero+= 4;
+                    }
+                    else throw new UnsupportedOperationException("Not implemented yet");
+                }
+                return numero;
+            }else throw new UnsupportedOperationException("Not implemented yet");
         }
     }
 ```
@@ -1310,7 +1033,7 @@ Este código evalúa expresiones matemáticas con operaciones de suma y resta en
 ```java
 @Test
 @DisplayName("Test combinación compleja de operaciones")
-public void testCombinacionCompleja() {
+public void test18() {
     assertEquals(2, calculator.parse("9 + 1 - 6 - 2"));
 }
 ```
@@ -1318,78 +1041,36 @@ public void testCombinacionCompleja() {
 **EJ19. Mensaje del test añadido que NO PASA**
 
 ```log
-org.opentest4j.AssertionFailedError: expected: <2> but was: <4>
+org.opentest4j.AssertionFailedError: expected: <2> but was: <0>
         at org.junit.jupiter.api.AssertionFailureBuilder.build(...)
         ...
 ```
 
 **EJ19. Código mínimo para que el test pase**
 
-Este código evalúa expresiones matemáticas con suma y resta, ajustando el cálculo según los operadores entre los números y enviando una excepción si se encuentra una letra.
+Ahora las operaciones se pueden intercalar por lo que hemos diseñado este código para que evalue expresiones matemáticas con suma y resta, ajustando el cálculo según los operadores entre los números y enviando una excepción si se encuentra una letra. 
 
 ```java
     public int parse(String expression) {
-        expression = expression.trim();
-        if((expression.matches(".*[A-Za-z].*"))){ 
-            throw new UnsupportedOperationException("Invalid expression");
 
-        }else{
-            String[] characters = expression.split(" ");
-            int inicio=0;
+            expression = expression.trim();
+            String[] caracteres = expression.split(" ");
 
-            int numero=Integer.parseInt(characters[0]);
-            if(expression.length()==1){
-                return numero;
-            }else{
+            if (expression.matches((".*[a-zA-Z].*"))) {
+                throw new UnsupportedOperationException("Invalid expression");
 
-                if(characters[1].equals("+")){
-                    for(int i=inicio;i<characters.length-1;i=i+2){
-                        if (characters[i+1].equals("+")){
-                                numero+=Integer.parseInt(characters[i+2]);
-                        }else{
-                            numero-=Integer.parseInt(characters[i+2]);
-                        }
+            } else {
+                int numero = Integer.parseInt(caracteres[0]);;
+
+                for (int i = 0; i < caracteres.length - 1; i = i + 2) {
+                    if (caracteres[i + 1].equals("-")) {
+                        numero -= Integer.parseInt(caracteres[i + 2]);
+                    } else if (caracteres[i + 1].equals("+")) {
+                        numero += Integer.parseInt(caracteres[i + 2]);
                     }
-                    return numero;
-                }else if (characters.length==3){
-
-                    int num1=Integer.parseInt(characters[0]);
-                    int num2=Integer.parseInt(characters[2]);
-                    int result= num1 -num2;
-                    return result;
-
-                }else if (characters.length==5){
-
-                    int num1=Integer.parseInt(characters[0]);
-                    int num2=Integer.parseInt(characters[2]);
-                    int num3=Integer.parseInt(characters[4]);
-                    
-
-                    if(characters[1].equals("-")&&characters[3].equals("-")){
-                        
-                        return num1 -num2-num3;
-
-                    }else if(characters[1].equals("-")&&characters[3].equals("+")){
-                        
-                        return num1 -num2+num3;
-
-                    }else if(characters[1].equals("+")&&characters[3].equals("-")){
-                        return num1 +num2-num3;
-
-                    }else{
-                        return num1 +num2+num3;
-                    }
-                }else{
-
-                    int num1=Integer.parseInt(characters[0]);
-                    int num2=Integer.parseInt(characters[2]);
-                    int num3=Integer.parseInt(characters[4]);
-                    int num4=Integer.parseInt(characters[6]);
-                    int result= num1 -num2-num3-num4;
-                    return result;
                 }
+                return numero;
             }
-        }
     }
 ```
 
@@ -1402,15 +1083,15 @@ Este código evalúa expresiones matemáticas con suma y resta, ajustando el cá
 ### Ejemplo 20
 
 
-**INPUT y OUTPUT**: "-5 + 9" → 4
+**INPUT y OUTPUT**: "- 5 + 9" → 4
 
 **EJ20. Código de test**
 ```java
-@Test
-@DisplayName("Test expresión compleja con múltiples operaciones")
-public void testExpresionCompleja() {
-    assertEquals(2, calculator.parse("9 + 1 - 6 - 2"));
-}
+    @Test
+    @DisplayName("Test expresión compleja con múltiples operaciones")
+    public void test20() {
+        assertEquals(4, calculator.parse("-5 + 9"));
+    }
 ```
 
 **EJ20. Mensaje del test añadido que NO PASA**
@@ -1424,77 +1105,36 @@ org.opentest4j.AssertionFailedError: expected: <2> but was: <4>
 
 **EJ20. Código mínimo para que el test pase**
 
-Este código toma una expresión matemática en texto, verifica que no tenga letras y luego hace sumas y restas según los números y operadores que contiene.
+Ahora el primer caracter del Array puede ser un símbolo "-" por lo que hay que tener en cuenta que no siempre será el primer símbolo un número.
 
 ```java
 public int parse(String expression) {
-        expression = expression.trim();
-        if((expression.matches(".*[A-Za-z].*"))){ 
-            throw new UnsupportedOperationException("Invalid expression");
 
-        }else{
-            String[] characters = expression.split(" ");
-            int inicio=0;
+            expression = expression.trim();
+            String[] caracteres = expression.split(" ");
 
-            int numero=Integer.parseInt(characters[0]);
-            if(expression.length()==1){
-                return numero;
-            }else{
+            if (expression.matches((".*[a-zA-Z].*"))) {
+                throw new UnsupportedOperationException("Invalid expression");
 
-                if(characters[1].equals("+")){
-                    for(int i=inicio;i<characters.length-1;i=i+2){
-                        if (characters[i+1].equals("+")){
-                                numero+=Integer.parseInt(characters[i+2]);
-                        }else{
-                            numero-=Integer.parseInt(characters[i+2]);
-                        }
-                    }
-                    return numero;
-                }else if (characters.length==3){
-                    int num1=Integer.parseInt(characters[0]);
-                    int result;
-                    if(num1>0){
-                        int num2=Integer.parseInt(characters[2]);
-                        result= num1 -num2;
-                    }else{
-                        int num2=Integer.parseInt(characters[2]);
-                        result= num1 +num2;
-                    }
-                    
-                    return result;
-
-                }else if (characters.length==5){
-
-                    int num1=Integer.parseInt(characters[0]);
-                    int num2=Integer.parseInt(characters[2]);
-                    int num3=Integer.parseInt(characters[4]);
-                    
-
-                    if(characters[1].equals("-")&&characters[3].equals("-")){
-                        
-                        return num1 -num2-num3;
-
-                    }else if(characters[1].equals("-")&&characters[3].equals("+")){
-                        
-                        return num1 -num2+num3;
-
-                    }else if(characters[1].equals("+")&&characters[3].equals("-")){
-                        return num1 +num2-num3;
-
-                    }else{
-                        return num1 +num2+num3;
-                    }
-                }else{
-
-                    int num1=Integer.parseInt(characters[0]);
-                    int num2=Integer.parseInt(characters[2]);
-                    int num3=Integer.parseInt(characters[4]);
-                    int num4=Integer.parseInt(characters[6]);
-                    int result= num1 -num2-num3-num4;
-                    return result;
+            } else {
+                int numero;
+                int inicio; 
+                if (caracteres[0].equals("-")){
+                    inicio = 1;
+                numero = -Integer.parseInt(caracteres[1]);
+                }else {
+                    inicio = 0;
+                    numero = Integer.parseInt(caracteres[0]);
                 }
+                for (int i = inicio; i < caracteres.length - 1; i = i + 2) {
+                    if (caracteres[i + 1].equals("-")) {
+                        numero -= Integer.parseInt(caracteres[i + 2]);
+                    } else if (caracteres[i + 1].equals("+")) {
+                        numero += Integer.parseInt(caracteres[i + 2]);
+                    }
+                }
+                return numero;
             }
-        }
     }
 ```
 **EJ20. Captura de que TODOS los test PASAN**
@@ -1503,7 +1143,7 @@ public int parse(String expression) {
 
 **EJ20. Refactorización**
 
-Se mejora la validación de entradas, asegurándose de que la expresión no esté vacía ni sea null. Además, simplifica el manejo de los operadores y la inicialización de numero, haciendo el código más limpio y fácil de entender. Todo esto mejora la eficiencia y la legibilidad del proceso de cálculo.
+Se mejora la validación de entradas, asegurándose de que la expresión no esté vacía ni sea null. Además hemos intuido de la posibilidad de que también se pase como primer caracter un "+".
 
 ```java
    public int parse(String expression) {

@@ -148,7 +148,7 @@ public class CalculatorParserTest {
     @Test
     @DisplayName("Test expresión compleja con múltiples operaciones")
     public void test20() {
-        assertEquals(2, calculator.parse("9 + 1 - 6 - 2"));
+        assertEquals(4, calculator.parse("- 5 + 9"));
     }
 
 }
